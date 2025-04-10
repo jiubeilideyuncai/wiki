@@ -6,6 +6,7 @@ import com.jiawa.wiki.resp.CommonResp;
 import com.jiawa.wiki.resp.EbookQueryResp;
 import com.jiawa.wiki.resp.PageResp;
 import com.jiawa.wiki.service.EbookService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public class EbookController {
         resp.setContent(list);
         return resp;
     }
-
+    @ApiOperation("编辑保存接口")
     @PostMapping("/save")
     public CommonResp save(@RequestBody EbookSaveReq req) {
         CommonResp resp = new CommonResp<>();
