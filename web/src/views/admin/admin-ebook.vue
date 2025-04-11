@@ -3,6 +3,12 @@
     <a-layout-content
         :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
+      <p>
+        <a-button type="primary" @click="add()" size="large">
+          新增
+        </a-button>
+      </p>
+
       <a-table
           :columns="columns"
           :row-key="record => record.id"
@@ -141,16 +147,34 @@ export default defineComponent({
       });
     };
 
+    /**
+     * 新增
+     */
+    const add = () => {
+      modalVisible.value = true;
+      ebook.value = {};
+    };
+
     // -------- 表单 ---------
     const ebook = ref({});
     const modalVisible = ref(false);
     const modalLoading = ref(false);
     const handleModalOk = () => {
       modalLoading.value = true;
-      setTimeout(() => {
-        modalVisible.value = false;
-        modalLoading.value = false;
-      }, 2000);
+      modalLoading.value = true;
+      axios.post("/ebook/save",ebook.value).then((response) => {
+        const data = response.data;
+        if(data.success) {
+          modalVisible.value = false;
+          modalLoading.value = false;
+          //重新加载列表
+          handleQuery({
+            page:pagination.value.current,
+            size:pagination.value.pageSize,
+          })
+        }
+
+      })
     };
 
     /**
@@ -177,11 +201,12 @@ export default defineComponent({
       loading,
       handleTableChange,
       edit,
+      add,
 
       ebook,
       modalVisible,
       modalLoading,
-      handleModalOk,
+      handleModalOk
     }
   }
 });
