@@ -22,9 +22,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://rm-uf6470s9615e13hc4no.mysql.rds.aliyuncs.com:3306/wikidev?serverTimezone=Asia/Shanghai"
+                        connectionURL="jdbc:mysql://rm-2ze37ci1om02t1820lo.mysql.rds.aliyuncs.com:3306/wikidev?serverTimezone=Asia/Shanghai"
                         userId="wikidev"
-                        password="wikidevABC123">
+                        password="Asdf1028">
         </jdbcConnection>
 
         <!-- domain类的位置 -->
